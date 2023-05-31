@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CitiesResponseI } from '../interface/cities.interface';
+import { CitiesResponseI, CityResponseI } from '../interface/cities.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,10 @@ export class CitiesService {
 
   getCities(): Observable<CitiesResponseI> {
     return this.http.get<CitiesResponseI>(this.apiUrl);
+  }
+
+  postCity(city: CityResponseI): Observable<any> {
+    return this.http.post(this.apiUrl, city);
   }
 
 }
