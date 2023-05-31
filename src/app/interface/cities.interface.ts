@@ -1,4 +1,4 @@
-export interface CitiesRespondeI {
+export interface CitiesResponseI {
   rta: string;
   data: CityResponseI[];
 }
