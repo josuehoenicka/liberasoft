@@ -1,0 +1,18 @@
+<p-table [value]="cities" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>CP</th>
+          <th>ID</th>
+          <th>Ciudad ID</th>
+          <th>Provincia</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-city>
+      <tr>
+          <td>{{ city.CP }}</td>
+          <td>{{ city.ID }}</td>
+          <td>{{ city.CIUDADID }}</td>
+          <td>{{ city.PROVINCIA }}</td>
+      </tr>
+  </ng-template>
+</p-table>
