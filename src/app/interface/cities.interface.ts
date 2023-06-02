@@ -8,4 +8,5 @@ export interface CityResponseI {
   ID: number;
   CIUDADID: string;
   PROVINCIA: string;
+  activeInput?: boolean;
 }
