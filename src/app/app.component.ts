@@ -40,29 +40,25 @@ export class AppComponent implements OnInit {
     );
   }
 
-  editCity(city: CityResponseI){
-  }
-
-  saveCity() {
-    const newCity = {
-      CP: this.newCity.CP,
-      ID: this.newCity.ID,
-      CIUDADID: this.newCity.CIUDADID,
-      PROVINCIA: this.newCity.PROVINCIA
-    };
-    this.cityService.addCity(newCity).subscribe(
-      () => {
-        this.cities.data.unshift(newCity);
-      },
-      (error) => {
-        console.error(error);
+  editCity(city: CityResponseI) {
+    city.activeInput = !city.activeInput;
+    setTimeout(() => {
+      const inputElement = document.getElementById(`input-${city.ID}`);
+      if (inputElement) {
+        inputElement.classList.add('input-edit');
       }
-    );
+    });
   }
 
+  saveCity(city: CityResponseI) {
+  }
 
-  cancel() {
-    this.newCity = { ...this.newCity, CP: '', ID: 0, CIUDADID: '', PROVINCIA: '' };
+  handleEnterKey(city: CityResponseI) {
+    alert('Value changed :)');
+    city.activeInput = false;
+  }
+
+  cancelEdit(city: CityResponseI) {
   }
 
   deleteCity(city: CityResponseI) {
