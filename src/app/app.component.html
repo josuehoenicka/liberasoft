@@ -2,7 +2,7 @@
   <p-table
     #dt
     [value]="cities.data"
-    [rows]="4"
+    [rows]="5"
     [paginator]="true"
     [globalFilterFields]="['CP', 'ID', 'CIUDADID', 'PROVINCIA']"
     [tableStyle]="{ 'min-width': '75rem' }"
@@ -26,9 +26,36 @@
         <td>
           <p-tableCheckbox [value]="city"></p-tableCheckbox>
         </td>
-        <td>{{ city.CP }}</td>
-        <td>{{ city.CIUDADID }}</td>
-        <td>{{ city.PROVINCIA }}</td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="city.CP"
+            [ngClass]="{'disabled-input': !city.activeInput, 'active-input': city.activeInput}"
+            [id]="'input-' + city.ID"
+            [disabled]="!city.activeInput"
+            (keydown.enter)="handleEnterKey(city)"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="city.CIUDADID"
+            [ngClass]="{'disabled-input': !city.activeInput, 'active-input': city.activeInput}"
+            [id]="'input-' + city.ID"
+            [disabled]="!city.activeInput"
+            (keydown.enter)="handleEnterKey(city)"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="city.PROVINCIA"
+            [ngClass]="{'disabled-input': !city.activeInput, 'active-input': city.activeInput}"
+            [id]="'input-' + city.ID"
+            [disabled]="!city.activeInput"
+            (keydown.enter)="handleEnterKey(city)"
+          />
+        </td>
         <td>
           <button
             pButton
@@ -51,7 +78,7 @@
       <tr>
         <td></td>
         <td>
-          <input type="text" [(ngModel)]="newCity.CP" />
+          <input type="number" [(ngModel)]="newCity.CP" />
         </td>
         <td>
           <input type="text" [(ngModel)]="newCity.CIUDADID" />
@@ -65,14 +92,14 @@
             pRipple
             label="Save"
             class="p-button-success"
-            (click)="saveCity()"
+            (click)="saveCity(newCity)"
           ></button>
           <button
             pButton
             pRipple
             label="Cancel"
             class="p-button-secondary"
-            (click)="cancel()"
+            (click)="cancelEdit(newCity)"
           ></button>
         </td>
       </tr>
