@@ -16,8 +16,18 @@ export class CitiesService {
     return this.http.get<CitiesResponseI>(this.apiUrl);
   }
 
-  postCity(city: CityResponseI): Observable<any> {
-    return this.http.post(this.apiUrl, city);
+  addCity(city: CityResponseI): Observable<CityResponseI> {
+    return this.http.post<CityResponseI>(this.apiUrl, city);
+  }
+
+  editCity(city: CityResponseI): Observable<CityResponseI> {
+    const url = `${this.apiUrl}/${city.ID}`;
+    return this.http.put<CityResponseI>(url, city);
+  }
+
+  deleteCity(cityId: number): Observable<any> {
+    const url = `${this.apiUrl}/${cityId}`;
+    return this.http.delete(url);
   }
 
 }
