@@ -10,13 +10,12 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
-
-
-import { AppComponent } from './app.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 import { CitiesService } from './service/cities.service';
+import { DialogService } from 'primeng/dynamicdialog';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { CitiesService } from './service/cities.service';
     DialogModule,
     DynamicDialogModule
   ],
-  providers: [CitiesService, DialogService, ConfirmationService, MessageService],
+  providers: [CitiesService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
