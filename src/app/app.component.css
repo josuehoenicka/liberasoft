@@ -8,3 +8,24 @@ main {
 .btn-edit {
   margin: 0 .5em;
 }
+
+.active-input {
+  border: none;
+  border: 1px solid black;
+  background-color: #ffffff;
+}
+
+.active-input:focus {
+  border: none;
+  outline: none;
+  border: 1px solid black;
+  background-color: #d5fdd4;
+  transition: .6s;
+}
+
+.disabled-input {
+  border: none;
+  background: none;
+  color: black;
+  pointer-events: none;
+}
