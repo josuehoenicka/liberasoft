@@ -1,7 +1,24 @@
 :root {
-  --primary: #7d99ff;
+  --primary: #899ce0;
   --secondary: #03050c;
+  --third: #3f3333;
+  --forty: #e9dede;
   --green: #d5fdd4;
   --red: #f3bfbf;
   --blue: #c8cdfa;
+}
+
+body::-webkit-scrollbar {
+  width: 1em;
+  height: 100%;
+  background-color: var(--third);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--forty);
+  border-radius: 1em;
+}
+
+body {
+  background-color: var(--primary);
 }
