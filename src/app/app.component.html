@@ -2,7 +2,7 @@
   <p-table
     #dt
     [value]="cities.data"
-    [rows]="5"
+    [rows]="15"
     [paginator]="true"
     [globalFilterFields]="['CP', 'ID', 'CIUDADID', 'PROVINCIA']"
     [tableStyle]="{ 'min-width': '75rem' }"
@@ -10,6 +10,7 @@
     [rowHover]="true"
     dataKey="ID"
     [showCurrentPageReport]="true"
+    class="table-container"
   >
     <ng-template pTemplate="header">
       <tr>
