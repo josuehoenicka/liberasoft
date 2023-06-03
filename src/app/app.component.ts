@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
       () => {
         this.cities.data.unshift(newCity);
         this.resetNewCity();
+        alert('City added :)');
       },
       (error) => {
         console.error(error);
@@ -78,6 +79,7 @@ export class AppComponent implements OnInit {
     this.cityService.deleteCity(city.ID).subscribe(
       () => {
         this.cities.data = this.cities.data.filter((c) => c.ID !== city.ID);
+        alert('City deleted :(');
       },
       (error) => {
         console.error(error);
@@ -91,6 +93,7 @@ export class AppComponent implements OnInit {
         this.cityService.deleteCity(city.ID).subscribe(
           () => {
             this.cities.data = this.cities.data.filter(c => c.ID !== city.ID);
+            alert('City deleted :(');
           },
           error => {
             console.error(error);
