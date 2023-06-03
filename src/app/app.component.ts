@@ -15,19 +15,17 @@ export class AppComponent implements OnInit {
   selectedCities: CityResponseI[] = [];
   newCity: CityResponseI = {
     CP: '',
-    ID: 0,
+    ID: this.numRamdon(1,999999999),
     CIUDADID: '',
     PROVINCIA: ''
   };
   citySelected: boolean = false;
-
 
   constructor(private cityService: CitiesService) {}
 
   ngOnInit() {
     this.fetchCities();
   }
-
 
   fetchCities() {
     this.cityService.getCities().subscribe(
@@ -40,6 +38,27 @@ export class AppComponent implements OnInit {
     );
   }
 
+  addCity(newCity: CityResponseI) {
+    this.cityService.addCity(newCity).subscribe(
+      () => {
+        this.cities.data.unshift(newCity);
+        this.resetNewCity();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  resetNewCity() {
+    this.newCity = {
+      CP: '',
+      ID: this.numRamdon(1, 999999999),
+      CIUDADID: '',
+      PROVINCIA: ''
+    };
+  }
+
   editCity(city: CityResponseI) {
     city.activeInput = !city.activeInput;
     setTimeout(() => {
@@ -50,15 +69,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  saveCity(city: CityResponseI) {
-  }
-
   handleEnterKey(city: CityResponseI) {
     alert('Value changed :)');
     city.activeInput = false;
-  }
-
-  cancelEdit(city: CityResponseI) {
   }
 
   deleteCity(city: CityResponseI) {
@@ -86,6 +99,10 @@ export class AppComponent implements OnInit {
       });
       this.selectedCities = [];
     }
+  }
+
+  numRamdon(min:number, max:number){
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
 }
