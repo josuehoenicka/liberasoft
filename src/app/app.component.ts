@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CitiesService } from './service/cities.service';
 import { CitiesResponseI, CityResponseI } from './interface/cities.interface';
+import { MessageService } from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MessageService]
 })
 export class AppComponent implements OnInit {
   cities: CitiesResponseI = {
@@ -21,7 +24,7 @@ export class AppComponent implements OnInit {
   };
   citySelected: boolean = false;
 
-  constructor(private cityService: CitiesService) {}
+  constructor(private cityService: CitiesService, private messageService: MessageService) {}
 
   ngOnInit() {
     this.fetchCities();
@@ -33,7 +36,7 @@ export class AppComponent implements OnInit {
         this.cities = response;
       },
       (error) => {
-        console.error(error);
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
       }
     );
   }
@@ -43,10 +46,10 @@ export class AppComponent implements OnInit {
       () => {
         this.cities.data.unshift(newCity);
         this.resetNewCity();
-        alert('City added :)');
+        this.messageService.add({ severity: 'success', summary: 'City added'});
       },
       (error) => {
-        console.error(error);
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
       }
     );
   }
@@ -71,18 +74,18 @@ export class AppComponent implements OnInit {
   }
 
   handleEnterKey(city: CityResponseI) {
-    alert('Value changed :)');
     city.activeInput = false;
+    this.messageService.add({ severity: 'success', summary: 'Value changed'});
   }
 
   deleteCity(city: CityResponseI) {
     this.cityService.deleteCity(city.ID).subscribe(
       () => {
         this.cities.data = this.cities.data.filter((c) => c.ID !== city.ID);
-        alert('City deleted :(');
+        this.messageService.add({ severity: 'success', summary: 'City deleted'});
       },
       (error) => {
-        console.error(error);
+        this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
       }
     );
   }
@@ -93,10 +96,10 @@ export class AppComponent implements OnInit {
         this.cityService.deleteCity(city.ID).subscribe(
           () => {
             this.cities.data = this.cities.data.filter(c => c.ID !== city.ID);
-            alert('City deleted :(');
+            this.messageService.add({ severity: 'success', summary: 'Cities deleted'});
           },
           error => {
-            console.error(error);
+            this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
           }
         );
       });
