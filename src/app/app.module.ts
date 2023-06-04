@@ -11,7 +11,9 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MessageService } from 'primeng/api';
 import { CitiesService } from './service/cities.service';
 import { DialogService } from 'primeng/dynamicdialog';
 
@@ -34,9 +36,10 @@ import { AppComponent } from './app.component';
     ButtonModule,
     InputTextModule,
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    BrowserAnimationsModule
   ],
-  providers: [CitiesService, DialogService],
+  providers: [CitiesService, DialogService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
