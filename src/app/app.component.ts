@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   selectedCities: CityResponseI[] = [];
   newCity: CityResponseI = {
     CP: '',
-    ID: this.numRamdon(1001,999999999),
+    ID: this.numRamdon(1002,999999999),
     CIUDADID: '',
     PROVINCIA: ''
   };
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
   resetNewCity() {
     this.newCity = {
       CP: '',
-      ID: this.numRamdon(1001, 999999999),
+      ID: this.numRamdon(1002, 999999999),
       CIUDADID: '',
       PROVINCIA: ''
     };
