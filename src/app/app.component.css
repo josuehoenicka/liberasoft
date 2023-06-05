@@ -19,21 +19,21 @@ main {
 
 .active-input {
   border: none;
-  border: 1px solid black;
-  background-color: #ffffff;
+  border: 1px solid var(--secondary);
+  background-color: var(--forty);
 }
 
 .active-input:focus {
   border: none;
   outline: none;
-  border: 1px solid black;
-  background-color: #d5fdd4;
+  border: 1px solid var(--secondary);
+  background-color: var(--green);
   transition: .6s;
 }
 
 .disabled-input {
   border: none;
   background: none;
-  color: black;
+  color: var(--secondary);
   pointer-events: none;
 }
