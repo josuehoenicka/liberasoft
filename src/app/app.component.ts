@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CitiesService } from './service/cities.service';
 import { CitiesResponseI, CityResponseI } from './interface/cities.interface';
 import { MessageService } from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +35,7 @@ export class AppComponent implements OnInit {
         this.cities = response;
       },
       (error) => {
-        this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
       }
     );
   }
@@ -49,7 +48,7 @@ export class AppComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'City added'});
       },
       (error) => {
-        this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
       }
     );
   }
@@ -85,7 +84,7 @@ export class AppComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'City deleted'});
       },
       (error) => {
-        this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
       }
     );
   }
@@ -99,7 +98,7 @@ export class AppComponent implements OnInit {
             this.messageService.add({ severity: 'success', summary: 'Cities deleted'});
           },
           error => {
-            this.messageService.add({ severity: 'success', summary: 'Error', detail: `${error}`});
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
           }
         );
       });
