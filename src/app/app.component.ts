@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     PROVINCIA: ''
   };
   citySelected: boolean = false;
+  showNotification: boolean = false;
 
   constructor(private cityService: CitiesService, private messageService: MessageService) {}
 
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit {
       () => {
         this.cities.data.unshift(newCity);
         this.resetNewCity();
-        this.messageService.add({ severity: 'success', summary: 'City added'});
+        this.messageService.add({ severity: 'success', summary: 'Added city'});
       },
       (error) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
@@ -74,14 +75,14 @@ export class AppComponent implements OnInit {
 
   handleEnterKey(city: CityResponseI) {
     city.activeInput = false;
-    this.messageService.add({ severity: 'success', summary: 'Value changed'});
+    this.messageService.add({ severity: 'success', summary: 'Updated value'});
   }
 
   deleteCity(city: CityResponseI) {
     this.cityService.deleteCity(city.ID).subscribe(
       () => {
         this.cities.data = this.cities.data.filter((c) => c.ID !== city.ID);
-        this.messageService.add({ severity: 'success', summary: 'City deleted'});
+        this.messageService.add({ severity: 'success', summary: 'City removed'});
       },
       (error) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
@@ -95,14 +96,21 @@ export class AppComponent implements OnInit {
         this.cityService.deleteCity(city.ID).subscribe(
           () => {
             this.cities.data = this.cities.data.filter(c => c.ID !== city.ID);
-            this.messageService.add({ severity: 'success', summary: 'Cities deleted'});
           },
           error => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}`});
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}` });
           }
         );
       });
       this.selectedCities = [];
+      this.showNotification = true;
+    }
+  }
+
+  showNotificationMessage() {
+    if (this.showNotification) {
+      this.messageService.add({ severity: 'success', summary: 'All checked items have been removed' });
+      this.showNotification = false; // Reiniciar la variable showNotification a false
     }
   }
 

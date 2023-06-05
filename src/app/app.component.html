@@ -29,7 +29,7 @@
             *ngIf="selectedCities.length > 0"
             icon="fa fa-trash"
             class="p-button-rounded p-button-danger trash-container"
-            (click)="deleteSelectedCities()"
+            (click)="deleteSelectedCities(); showNotificationMessage()"
             [disabled]="!selectedCities || !selectedCities.length"
           ></button>
         </th>
