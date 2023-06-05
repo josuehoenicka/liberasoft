@@ -1,3 +1,5 @@
+/* global tags */
+
 main {
   margin: 1em 0;
   width: 100vw;
@@ -7,11 +9,15 @@ main {
   justify-content: center;
 }
 
+/* containers */
+
 .checkbox-container, .trash-container {
   display: flex;
   width: 100%;
   justify-content: center;
 }
+
+/* buttons */
 
 .btn-edit {
   margin: 0 .5em;

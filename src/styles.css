@@ -1,3 +1,5 @@
+/* root */
+
 :root {
   --primary: #899ce0;
   --secondary: #03050c;
@@ -8,6 +10,8 @@
   --blue: #c8cdfa;
 }
 
+/* general styles */
+
 * {
   scroll-behavior: smooth;
   padding: 0;
@@ -16,6 +20,8 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+
+/* body */
 
 body::-webkit-scrollbar {
   width: 1em;

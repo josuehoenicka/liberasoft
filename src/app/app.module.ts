@@ -1,3 +1,4 @@
+/* modules */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,10 +14,12 @@ import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+/* services */
 import { MessageService } from 'primeng/api';
 import { CitiesService } from './service/cities.service';
 import { DialogService } from 'primeng/dynamicdialog';
 
+/* components */
 import { AppComponent } from './app.component';
 
 @NgModule({

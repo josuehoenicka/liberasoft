@@ -10,6 +10,8 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class AppComponent implements OnInit {
+
+  /* objects */
   cities: CitiesResponseI = {
     rta: '',
     data: []
@@ -17,10 +19,12 @@ export class AppComponent implements OnInit {
   selectedCities: CityResponseI[] = [];
   newCity: CityResponseI = {
     CP: '',
-    ID: this.numRamdon(1,999999999),
+    ID: this.numRamdon(1001,999999999),
     CIUDADID: '',
     PROVINCIA: ''
   };
+
+  /* booleans */
   citySelected: boolean = false;
   showNotification: boolean = false;
 
@@ -30,6 +34,7 @@ export class AppComponent implements OnInit {
     this.fetchCities();
   }
 
+  /* get */
   fetchCities() {
     this.cityService.getCities().subscribe(
       (response: CitiesResponseI) => {
@@ -41,6 +46,7 @@ export class AppComponent implements OnInit {
     );
   }
 
+  /* post */
   addCity(newCity: CityResponseI) {
     this.cityService.addCity(newCity).subscribe(
       () => {
@@ -54,15 +60,7 @@ export class AppComponent implements OnInit {
     );
   }
 
-  resetNewCity() {
-    this.newCity = {
-      CP: '',
-      ID: this.numRamdon(1, 999999999),
-      CIUDADID: '',
-      PROVINCIA: ''
-    };
-  }
-
+  /* put */
   editCity(city: CityResponseI) {
     city.activeInput = !city.activeInput;
     setTimeout(() => {
@@ -73,11 +71,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  handleEnterKey(city: CityResponseI) {
-    city.activeInput = false;
-    this.messageService.add({ severity: 'success', summary: 'Updated value'});
-  }
-
+  /* delete */
   deleteCity(city: CityResponseI) {
     this.cityService.deleteCity(city.ID).subscribe(
       () => {
@@ -90,6 +84,7 @@ export class AppComponent implements OnInit {
     );
   }
 
+  /* delete all */
   deleteSelectedCities() {
     if (this.selectedCities.length > 0) {
       this.selectedCities.forEach(city => {
@@ -107,15 +102,33 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /* reset */
+  resetNewCity() {
+    this.newCity = {
+      CP: '',
+      ID: this.numRamdon(1001, 999999999),
+      CIUDADID: '',
+      PROVINCIA: ''
+    };
+  }
+
+  /* show a notification (fix multiple notification on deleteSelectedCities) */
   showNotificationMessage() {
     if (this.showNotification) {
       this.messageService.add({ severity: 'success', summary: 'All checked items have been removed' });
-      this.showNotification = false; // Reiniciar la variable showNotification a false
+      this.showNotification = false;
     }
   }
 
+  /* get random ID */
   numRamdon(min:number, max:number){
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  /* handle enter key */
+  handleEnterKey(city: CityResponseI) {
+    city.activeInput = false;
+    this.messageService.add({ severity: 'success', summary: 'Updated value'});
   }
 
 }
